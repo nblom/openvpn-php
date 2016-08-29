@@ -33,9 +33,9 @@ if (is_file('issued/'.$_GET['download'])) {
 }
 
 # Enable local translation of this
-#bindtextdomain("messages", "./locale");
-#textdomain("messages");
-#bind_textdomain_codeset("messages", 'UTF-8');
+bindtextdomain("messages", "./locale");
+textdomain("messages");
+bind_textdomain_codeset("messages", 'UTF-8');
 
 
 # Bootstrap gui for non curl browsers, try to make it look good.
