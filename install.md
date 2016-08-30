@@ -206,7 +206,7 @@ nano /etc/crontab
 
 configure OpenVPN
 
-Adjust push "route 192.168.x.0 255.255.255.0"
+Adjust push and or server directives
 ```
 nano /usr/local/etc/openvpn/server.conf
 ```
