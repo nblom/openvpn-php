@@ -1,150 +1,151 @@
 Virtualbox
 ------------
 
-Installera Virtualbox och skapa en ny FreeBSD 64 maskin enligt:
+Installing VirtualBox and create a new FreeBSD 64 machine as:
 
-Hämta [ftp://ftp.se.freebsd.org/pub/FreeBSD/releases/ISO-IMAGES/10.3/FreeBSD-10.3-RELEASE-amd64-disc1.iso](ftp://ftp.se.freebsd.org/pub/FreeBSD/releases/ISO-IMAGES/10.3/FreeBSD-10.3-RELEASE-amd64-disc1.iso)
+Retrieve [ftp://ftp.se.freebsd.org/pub/FreeBSD/releases/ISO-IMAGES/10.3/FreeBSD-10.3-RELEASE-amd64-disc1.iso](ftp://ftp.se.freebsd.org/pub/FreeBSD/releases/ISO-IMAGES/10.3/FreeBSD-10.3-RELEASE-amd64-disc1.iso)
 
 
 * 1 CPU
-* 1 gb ram
-* 10 gb hdd
-* Byt från NAT nätverk till Bridge.
-* Montera CD med iso fil.
-* Starta den virtuella maskinen.
+* 1 GB of RAM
+* 10 GB HDD
+* Change from NAT networking to Bridge.
+* Mount the ISO in the virtual CD.
+* Start the virtual machine.
 
 Installation
 ------------
-När du startar upp FreeBSD från cd, välj följande:
+When you boot FreeBSD from the CD, select the following:
 
 ![freebsd00]
 
-saknar skärmdump på alternativet swedish iso
+Choose a keyboard that suits you.
 
 ![freebsd01]
 
-Välj ett hostname som du kommer peka i dns. **Glöm inte peka hosname mot externt IP i dnsen**, gör det redan nu för att vara säker.
+Choose a hostname that you will point to the DNS. **Do not forget to point hosname against external IP in dnsen**, do it now, just to be sure.
 
 ![freebsd02]
 
-Kryssa ur (med hjälp av mellanslag) games, lib32 och ports.
+Uncheck (using the spacebar) games, lib32 and ports.
 
 ![freebsd03]
 
-Välj Auto (UFS)
+Select Auto (UFS)
 
 ![freebsd04]
 
-Välj Entire Disk
+Select Entire Disk
 
 ![freebsd05]
 
-Välj GPT
+Select GPT
 
 ![freebsd06]
 
-Välj Finish
+Select Finish
 
 ![freebsd07]
 
-Välj Commit
+Select Commit
 
 ![freebsd08]
 
-Vänta på att installationen går färdigt.
+Wait for the installation is finished.
 
 ![freebsd09]
 
-Sätt ett root lösenord.
+Set a root password.
 
 ![freebsd10]
 
-Välj det inbyggda nätverksinterfacet.
+Select the built-in network interface. And take note of the interface name (if not em0, later changes are required)
 
 ![freebsd11]
 
-Välj Ja, du vill ha IPv4
+Select Yes, you want IPv4
 
 ![freebsd12]
 
-Välj Nej, du vill inte ha DHCP.
+Select No, you do not want DHCP.
 
 ![freebsd13]
 
-Lägg in ett IP manuellt.
+Enter the IP manually.
 
 ![freebsd14]
 
-Säg att du *INTE* vill ha IPv6 (kräver eget /64)
+Say you *dont* want IPv6 (requires its own / 64)
 
 ![freebsd15]
 
-Lägg till två namnservar.
+Add two name servers.
 
 ![freebsd16]
 
-Välj Nej.
+Select Yes.
 
 ![freebsd17]
 
-Välj Europa.
+Select appropriate region.
 
 ![freebsd18]
 
-Välj Sweden.
+Select appropriate country.
 
-Välj Ja.
+Select Yes.
 
 ![freebsd20]
 
-Välj bort dumdev (du avmarkerar med mellanslag).
+Deselect dumdev (you deselect with spaces).
 
 ![freebsd21]
 
-Välj **Ja**, du vill lägga till en användare (annars kan du inte logga in på ssh)
+Select **Yes**, you want to add a user (to be able to log on using ssh)
 
 ![freebsd22]
 
-Fyll i uppgifterna, tänk på att lägga till den nya användaren i gruppen **wheel**.
-Sätt lämpligvis samma lösenord som till root.
+Fill in the details, remember to add the new user to the group **wheel**.
+Use same password to root.
 
 ![freebsd23]
 ![freebsd24]
 
-Välj exit.
+Choose exit.
 
 ![freebsd25]
 
-Välj No.
+Choose No.
 
 ![freebsd26]
 
-Mata ut den virtuella CD:n och välj reboot.
+Eject the virtual CD and select reboot.
 
 ![freebsd27]
 
-Vänta på omstart av systemet.
+Wait for the booting of the system.
 
-Konfiguration i freebsd
+Configuration in freebsd
 ------------
-Vi fortsätter i Terminal, med ssh.
+We will continue in Terminal, ssh.
 
 ```
 ssh openvpn@ip
 su
+# Enter password used for root
 freebsd-update fetch install
 # Tryck på enter för more sen q för quit.
 pkg install -y nano screen bash git openvpn apache24 php56-openssl php56-session php56-gettext mod_php56
 bash
 ```
 
-Autostart i freebsd
+Configure freebsd
 
 ```
 nano /etc/rc.conf
 ```
 
-Lägg till följande längst ner:
+Add the following at the bottom:
 
 ```
 apache24_enable="YES"
@@ -153,14 +154,13 @@ firewall_type="open"
 
 gateway_enable="YES"
 natd_enable="YES"
-natd_interface="em0" # Om ESXi justera till vmx0
+natd_interface="em0" # If ESXi addjust to vmx0 you should have the interface name noted. Use it here.
 natd_flags="-dynamic -m"
 
 openvpn_enable="YES"
 openvpn_configfile="/usr/local/etc/openvpn/server.conf"
 ```
-
-## Hämta git repo
+## Download git repo
 
 ```
 rm -fr /usr/local/www/apache24/data/
@@ -168,27 +168,27 @@ git clone https://github.com/nblom/openvpn-php.git /usr/local/www/apache24/data/
 chmod 777 /usr/local/www/apache24/data/
 ```
 
-## Konfigurera apache
+## Configuring Apache
 ```
 cp /usr/local/www/apache24/data/apache.conf /usr/local/etc/apache24/Includes/apache.conf
 service apache24 start
 ```
 
-## Konfigurera openvpn
+## Configure OpenVPN
 ```
 mkdir /usr/local/etc/openvpn/
 cp /usr/local/www/apache24/data/server.conf /usr/local/etc/openvpn/
 openssl dhparam -out /usr/local/etc/openvpn/dh.pem 2048
 ```
 
-Anropa index.php via curl (så skapas rätt filer med rätt behörighet)
+Call index.php via curl (to create the right files with the proper permissions)
 
 ```
 curl localhost
 ```
-### Spara lösenordet som genererats!
+### Save password generated!
 
-Flytta sen openvpn filerna och kopiera ca certfikatet.
+Move the OpenVPN files and copy about your certificate.
 
 ```
 mv /usr/local/www/apache24/data/openvpn-server.* /usr/local/etc/openvpn/
@@ -196,7 +196,7 @@ cp /usr/local/www/apache24/data/ca.crt /usr/local/etc/openvpn/
 chmod 600 /usr/local/etc/openvpn/openvpn-server.key 
 ```
 
-Lägg till synkronisering av datum och tid i crontab.
+Add synchronizing the date and time in the crontab.
 
 ```
 ntpdate ntp1.sth.netnod.se
@@ -204,49 +204,50 @@ nano /etc/crontab
 00      *       *       *       *       root    ntpdate -s ntp1.sth.netnod.se
 ```
 
-Konfigurera OpenVPN
+configure OpenVPN
 
-Justera push "route 192.168.x.0 255.255.255.0"
+Adjust push "route 192.168.x.0 255.255.255.0"
 ```
 nano /usr/local/etc/openvpn/server.conf
 ```
 
 
-Och slutligen, starta om hela maskinen.
+And finally, reboot the entire machine.
 
 ```
 reboot
 ```
 
-Brandvägg
+Firewall
 ------------
 
-För att openvpn ska fungera behöver du mappa externt ip till internt för **UDP port 1194**
+To OpenVPN to work you need to map the external IP to internally **UDP port 1194**
 
-Exempel i Halon:
+Examples for Halon securityrouter.org:
 
 ```
 pass in quick on wan proto udp to wan port 1194 rdr-to 192.168.0.x label OpenVPN
 ```
 
 
-Om du vill starta virtualbox headless.
+If you want to start virtualbox headless.
 ------------
 
-Instruktion behöver kompletteras.
+Instruction needs to be improved.
 
 ```
 /usr/local/bin/VBoxManage list vms
-/usr/local/bin/VBoxManage registervm path till openvpn.något
+/usr/local/bin/VBoxManage registervm path to something
 ```
 
-LaunchDaemon fil för automatiskt start headless:
+LaunchDaemon file for automatic start headless:
 
 ```
 sudo nano /Library/LaunchDaemons/se.lop.virtualbox.openvpn.plist
+sudo chmod 644 /Library/LaunchDaemons/se.lop.virtualbox.openvpn.plist
 ```
 
-Lägg in namn om du inte döpte maskinen till "OpenVPN"
+Change the name if you have not named the machine to "OpenVPN"
 
 ```
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
