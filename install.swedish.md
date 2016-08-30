@@ -19,7 +19,11 @@ När du startar upp FreeBSD från cd, välj följande:
 
 ![freebsd00]
 
-saknar skärmdump på alternativet swedish iso
+Vill du ha svenskt tangentbord, väljer du denna:
+
+![freebsd00b]
+
+Välj fortsätt använd svenskt tangentbord.
 
 ![freebsd01]
 
@@ -280,6 +284,7 @@ Lägg in namn om du inte döpte maskinen till "OpenVPN"
 
 
 [freebsd00]: images/freebsd00.png "FreeBSD Install screenshot"
+[freebsd00b]: images/freebsd00b.png "FreeBSD Install screenshot"
 [freebsd01]: images/freebsd01.png "FreeBSD Install screenshot"
 [freebsd02]: images/freebsd02.png "FreeBSD Install screenshot"
 [freebsd03]: images/freebsd03.png "FreeBSD Install screenshot"
