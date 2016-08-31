@@ -17,111 +17,111 @@ Installation
 ------------
 When you boot FreeBSD from the CD, select the following:
 
-![freebsd00]
+![FreeBSD install step](images/freebsd00.png)
 
 Choose a keyboard that suits you.
 
-![freebsd01]
+![FreeBSD install step](images/freebsd01.png)
 
 Choose a hostname that you will point to the DNS. **Do not forget to point hosname against external IP in dnsen**, do it now, just to be sure.
 
-![freebsd02]
+![FreeBSD install step](images/freebsd02.png)
 
 Uncheck (using the spacebar) games, lib32 and ports.
 
-![freebsd03]
+![FreeBSD install step](images/freebsd03.png)
 
 Select Auto (UFS)
 
-![freebsd04]
+![FreeBSD install step](images/freebsd04.png)
 
 Select Entire Disk
 
-![freebsd05]
+![FreeBSD install step](images/freebsd05.png)
 
 Select GPT
 
-![freebsd06]
+![FreeBSD install step](images/freebsd06.png)
 
 Select Finish
 
-![freebsd07]
+![FreeBSD install step](images/freebsd07.png)
 
 Select Commit
 
-![freebsd08]
+![FreeBSD install step](images/freebsd08.png)
 
 Wait for the installation is finished.
 
-![freebsd09]
+![FreeBSD install step](images/freebsd09.png)
 
 Set a root password.
 
-![freebsd10]
+![FreeBSD install step](images/freebsd10.png)
 
 Select the built-in network interface. And take note of the interface name (if not em0, later changes are required)
 
-![freebsd11]
+![FreeBSD install step](images/freebsd11.png)
 
 Select Yes, you want IPv4
 
-![freebsd12]
+![FreeBSD install step](images/freebsd12.png)
 
 Select No, you do not want DHCP.
 
-![freebsd13]
+![FreeBSD install step](images/freebsd13.png)
 
 Enter the IP manually.
 
-![freebsd14]
+![FreeBSD install step](images/freebsd14.png)
 
 Say you *dont* want IPv6 (requires its own / 64)
 
-![freebsd15]
+![FreeBSD install step](images/freebsd15.png)
 
 Add two name servers.
 
-![freebsd16]
+![FreeBSD install step](images/freebsd16.png)
 
 Select Yes.
 
-![freebsd17]
+![FreeBSD install step](images/freebsd17.png)
 
 Select appropriate region.
 
-![freebsd18]
+![FreeBSD install step](images/freebsd18.png)
 
 Select appropriate country.
 
 Select Yes.
 
-![freebsd20]
+![FreeBSD install step](images/freebsd20.png)
 
 Deselect dumdev (you deselect with spaces).
 
-![freebsd21]
+![FreeBSD install step](images/freebsd21.png)
 
 Select **Yes**, you want to add a user (to be able to log on using ssh)
 
-![freebsd22]
+![FreeBSD install step](images/freebsd22.png)
 
 Fill in the details, remember to add the new user to the group **wheel**.
 Use same password to root.
 
-![freebsd23]
-![freebsd24]
+![FreeBSD install step](images/freebsd23.png)
+![FreeBSD install step](images/freebsd24.png)
 
 Choose exit.
 
-![freebsd25]
+![FreeBSD install step](images/freebsd25.png)
 
 Choose No.
 
-![freebsd26]
+![FreeBSD install step](images/freebsd26.png)
 
 Eject the virtual CD and select reboot.
 
-![freebsd27]
+![FreeBSD install step](images/freebsd27.png)
 
 Wait for the booting of the system.
 
@@ -279,33 +279,67 @@ Change the name if you have not named the machine to "OpenVPN"
 </plist>
 ```
 
+Apple Remote Desktop deployment of Tunnelblick
+------------
+
+Click on [Download Latest Stable Release](https://tunnelblick.net/) and mount the downloaded DMG.
+
+Copy Tunnelblick Application to target clients Application folder.
+
+![List screnshot](images/remotedesktop1.png?raw=true "List of users")
+
+Send Unix Command *note the escaped space in the path*
+
+```
+mkdir -p ~/Library/Application\ Support/Tunnelblick/Configurations
+```
+
+![List screnshot](images/remotedesktop2.png?raw=true "List of users")
+
+Copy configuration from downloaded webgui *note no escaped space in the Place item in path*
+
+```
+~/Library/Application Support/Tunnelblick/Configurations/
+```
+
+![List screnshot](images/remotedesktop3.png?raw=true "List of users")
+
+Rename configuration to something more user friendly
+
+```
+mv ~/Library/Application\ Support/Tunnelblick/Configurations/*.ovpn ~/Library/Application\ Support/Tunnelblick/Configurations/CompanyName.ovpn
+```
+
+![List screnshot](images/remotedesktop4.png?raw=true "List of users")
 
 
-[freebsd00]: images/freebsd00.png "FreeBSD Install screenshot"
-[freebsd01]: images/freebsd01.png "FreeBSD Install screenshot"
-[freebsd02]: images/freebsd02.png "FreeBSD Install screenshot"
-[freebsd03]: images/freebsd03.png "FreeBSD Install screenshot"
-[freebsd04]: images/freebsd04.png "FreeBSD Install screenshot"
-[freebsd05]: images/freebsd05.png "FreeBSD Install screenshot"
-[freebsd06]: images/freebsd06.png "FreeBSD Install screenshot"
-[freebsd07]: images/freebsd07.png "FreeBSD Install screenshot"
-[freebsd08]: images/freebsd08.png "FreeBSD Install screenshot"
-[freebsd09]: images/freebsd09.png "FreeBSD Install screenshot"
-[freebsd10]: images/freebsd10.png "FreeBSD Install screenshot"
-[freebsd11]: images/freebsd11.png "FreeBSD Install screenshot"
-[freebsd12]: images/freebsd12.png "FreeBSD Install screenshot"
-[freebsd13]: images/freebsd13.png "FreeBSD Install screenshot"
-[freebsd14]: images/freebsd14.png "FreeBSD Install screenshot"
-[freebsd15]: images/freebsd15.png "FreeBSD Install screenshot"
-[freebsd16]: images/freebsd16.png "FreeBSD Install screenshot"
-[freebsd17]: images/freebsd17.png "FreeBSD Install screenshot"
-[freebsd18]: images/freebsd18.png "FreeBSD Install screenshot"
-[freebsd19]: images/freebsd19.png "FreeBSD Install screenshot"
-[freebsd20]: images/freebsd20.png "FreeBSD Install screenshot"
-[freebsd21]: images/freebsd21.png "FreeBSD Install screenshot"
-[freebsd22]: images/freebsd22.png "FreeBSD Install screenshot"
-[freebsd23]: images/freebsd23.png "FreeBSD Install screenshot"
-[freebsd24]: images/freebsd24.png "FreeBSD Install screenshot"
-[freebsd25]: images/freebsd25.png "FreeBSD Install screenshot"
-[freebsd26]: images/freebsd26.png "FreeBSD Install screenshot"
-[freebsd27]: images/freebsd27.png "FreeBSD Install screenshot"
+
+Tunnelblick configuration on macOS client
+------------
+
+Click Convert Configurations
+
+![List screnshot](images/tunnelblick1.png?raw=true "Tunnelblick screenshot")
+
+Click do not check for change
+
+![List screnshot](images/tunnelblick2.png?raw=true "Tunnelblick screenshot")
+
+Check for updates if your want.
+
+![List screnshot](images/tunnelblick3.png?raw=true "Tunnelblick screenshot")
+
+Place the icon where you want.
+
+![List screnshot](images/tunnelblick4.png?raw=true "Tunnelblick screenshot")
+
+Select VPN Details...
+
+![List screnshot](images/tunnelblick5.png?raw=true "Tunnelblick screenshot")
+
+Select *Do not set nameservers* under Set DNS.
+
+Also recommend to deselect *Check if apparent public IP address changed after connecting.*
+
+![List screnshot](images/tunnelblick6.png?raw=true "Tunnelblick screenshot")
+
