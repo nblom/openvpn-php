@@ -20,6 +20,10 @@ $key_config = array(
 
 date_default_timezone_set('Europe/Stockholm');
 
-putenv('LC_ALL=sv_SE');
-setlocale(LC_ALL, 'sv_SE');
+# Swedish
+#putenv('LC_ALL=sv_SE');
+#setlocale(LC_ALL, 'sv_SE');
 
+# English
+putenv('LC_ALL=en_US');
+setlocale(LC_ALL, 'en_US');
