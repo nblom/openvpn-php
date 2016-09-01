@@ -195,7 +195,6 @@ bash
 ```
 
 Configure freebsd
-
 ```
 nano /etc/rc.conf
 ```
@@ -257,6 +256,12 @@ cp /usr/local/www/apache24/data/ca.crt /usr/local/etc/openvpn/
 chmod 600 /usr/local/etc/openvpn/openvpn-server.key 
 ```
 
+Now you can copy the apachessl config, so after reboot it will listen to https with your certficate.
+
+```
+cp /usr/local/www/apache24/data/apachessl.conf /usr/local/etc/apache24/Includes/apachessl.conf
+```
+
 Add synchronizing the date and time in the crontab.
 
 ```
@@ -280,6 +285,16 @@ reboot
 or
 shutdown -h now # if you want to use LaunchDaemon to start Virtualbox headless.
 ```
+
+Visiting the webgui
+------------
+Point your browser to https://**your internal ip**
+
+You should see this site, after an alert of course that your certificate is completely inaccurate.
+
+![Login screnshot](images/openvpn-php1.png?raw=true "Login" =450x)
+
+
 
 Firewall
 ------------
