@@ -3,7 +3,7 @@ Virtualbox
 
 Installing VirtualBox and FreeBSD
 
-* Download FreeBSD ISO: [ftp://ftp.se.freebsd.org/pub/FreeBSD/releases/ISO-IMAGES/10.3/FreeBSD-10.3-RELEASE-amd64-disc1.iso](ftp://ftp.se.freebsd.org/pub/FreeBSD/releases/ISO-IMAGES/10.3/FreeBSD-10.3-RELEASE-amd64-disc1.iso)
+* Download FreeBSD ISO: [ftp://ftp2.se.freebsd.org/pub/FreeBSD/releases/ISO-IMAGES/10.3/FreeBSD-10.3-RELEASE-amd64-disc1.iso](ftp://ftp2.se.freebsd.org/pub/FreeBSD/releases/ISO-IMAGES/10.3/FreeBSD-10.3-RELEASE-amd64-disc1.iso)
 
 * Download VirtualBox from [virtualbox.org](https://www.virtualbox.org/wiki/Downloads)
 
@@ -253,7 +253,8 @@ Move the OpenVPN files and copy about your certificate.
 ```
 mv /usr/local/www/apache24/data/openvpn-server.* /usr/local/etc/openvpn/
 cp /usr/local/www/apache24/data/ca.crt /usr/local/etc/openvpn/
-chmod 600 /usr/local/etc/openvpn/openvpn-server.key 
+chmod 600 /usr/local/etc/openvpn/openvpn-server.key
+chown root /usr/local/etc/openvpn/openvpn-server.key
 ```
 
 Now you can copy the apachessl config, so after reboot it will listen to https with your certficate.
@@ -304,7 +305,7 @@ To OpenVPN to work you need to map the external IP to internally **UDP port 1194
 Examples for Halon securityrouter.org:
 
 ```
-pass in quick on wan proto udp to wan port 1194 rdr-to 192.168.0.x label OpenVPN
+pass in quick on wan proto udp to (wan) port 1194 rdr-to 192.168.0.x label OpenVPN
 ```
 
 
