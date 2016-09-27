@@ -52,6 +52,17 @@ natd_flags="-dynamic -m"
 openvpn_enable="YES"
 openvpn_configfile="/usr/local/etc/openvpn/server.conf"
 ```
+
+## Sync current time
+
+Add synchronizing the date and time in the crontab.
+
+```
+ntpdate ntp1.sth.netnod.se
+nano /etc/crontab
+00      *       *       *       *       root    ntpdate -s ntp1.sth.netnod.se
+```
+
 ## Download git repo
 
 ```
@@ -99,14 +110,6 @@ Now you can copy the apachessl config, so after reboot it will listen to https w
 
 ```
 cp /usr/local/www/apache24/data/apachessl.conf /usr/local/etc/apache24/Includes/apachessl.conf
-```
-
-Add synchronizing the date and time in the crontab.
-
-```
-ntpdate ntp1.sth.netnod.se
-nano /etc/crontab
-00      *       *       *       *       root    ntpdate -s ntp1.sth.netnod.se
 ```
 
 configure OpenVPN
