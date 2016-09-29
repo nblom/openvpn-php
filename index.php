@@ -235,6 +235,7 @@ if (strlen($_POST['name']) > 2) {
 		openssl_csr_export_to_file($csr,'issued/'.$_POST['name'].'.csr');
 		echo '<div class="form-signin">';
 		echo '<h3 class="form-signin-heading">'._('Password for').' '.$_POST['name'].':</h3><samp>'.$_POST['phrase'].'</samp><h6>'._('Passwords are not saved, they are only showed here once').'.</h6>';
+		echo '<a href="?download='.$_POST['name'].'.crt" class="btn btn-primary btn-xs" role="button">'._('Fetch').'</a>';
 		echo '</div>';
 		exec('openssl ca -config openssl.cnf -key "'.$_SESSION['password'].'" -valid issued/'.$_POST['name'].'.crt',$return,$exit);
 		exec('openssl ca -config openssl.cnf -key "'.$_SESSION['password'].'" -gencrl -out intermediate.crl.pem');
