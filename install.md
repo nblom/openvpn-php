@@ -46,8 +46,9 @@ firewall_type="open"
 
 gateway_enable="YES"
 natd_enable="YES"
-natd_interface="em0" # If ESXi adjust to vmx0 - you should have the interface name noted. Use it here.
-natd_flags="-dynamic -m"
+# If ESXi adjust to vmx0 - you should have the interface name noted. Use it here.
+natd_interface="em0"
+natd_flags="-dynamic -m -interface vmx0"
 
 openvpn_enable="YES"
 openvpn_configfile="/usr/local/etc/openvpn/server.conf"
@@ -134,7 +135,7 @@ Point your browser to https://**your internal ip**
 
 You should see this site, after an alert of course that your certificate is completely inaccurate.
 
-![Login screnshot](images/openvpn-php1.png?raw=true "Login" =450x)
+![Login screnshot](images/openvpn-php1.png?raw=true "Login")
 
 
 
@@ -161,7 +162,7 @@ sudo -s
 /usr/local/bin/VBoxManage registervm <path to OpenVPN.vbox>
 ```
 
-![Virtualbox screenshot](images/virtualbox30.png?raw=true =450x)
+![Virtualbox screenshot](images/virtualbox30.png?raw=true)
 
 LaunchDaemon file for automatic start headless:
 
@@ -210,7 +211,7 @@ Click on [Download Latest Stable Release](https://tunnelblick.net/) and mount th
 
 Copy Tunnelblick Application to target clients Application folder.
 
-![List screnshot](images/remotedesktop1.png?raw=true "List of users" =450x)
+![List screnshot](images/remotedesktop1.png?raw=true "List of users")
 
 Send Unix Command *note the escaped space in the path*
 
@@ -218,7 +219,7 @@ Send Unix Command *note the escaped space in the path*
 mkdir -p ~/Library/Application\ Support/Tunnelblick/Configurations
 ```
 
-![List screnshot](images/remotedesktop2.png?raw=true "List of users" =450x)
+![List screnshot](images/remotedesktop2.png?raw=true "List of users")
 
 Copy configuration from downloaded webgui *note no escaped space in the Place item in path*
 
@@ -226,7 +227,7 @@ Copy configuration from downloaded webgui *note no escaped space in the Place it
 ~/Library/Application Support/Tunnelblick/Configurations/
 ```
 
-![List screnshot](images/remotedesktop3.png?raw=true "List of users" =450x)
+![List screnshot](images/remotedesktop3.png?raw=true "List of users")
 
 Rename configuration to something more user friendly
 
@@ -234,7 +235,7 @@ Rename configuration to something more user friendly
 mv ~/Library/Application\ Support/Tunnelblick/Configurations/*.ovpn ~/Library/Application\ Support/Tunnelblick/Configurations/CompanyName.ovpn
 ```
 
-![List screnshot](images/remotedesktop4.png?raw=true "List of users" =450x)
+![List screnshot](images/remotedesktop4.png?raw=true "List of users")
 
 
 
@@ -243,19 +244,19 @@ Tunnelblick configuration on macOS client
 
 Launch the Tunnelblick app and Click Convert Configurations
 
-![List screnshot](images/tunnelblick1.png?raw=true "Tunnelblick screenshot" =450x)
+![List screnshot](images/tunnelblick1.png?raw=true "Tunnelblick screenshot")
 
 Click do not check for change
 
-![List screnshot](images/tunnelblick2.png?raw=true "Tunnelblick screenshot" =450x)
+![List screnshot](images/tunnelblick2.png?raw=true "Tunnelblick screenshot")
 
 Check for updates if your want.
 
-![List screnshot](images/tunnelblick3.png?raw=true "Tunnelblick screenshot" =450x)
+![List screnshot](images/tunnelblick3.png?raw=true "Tunnelblick screenshot")
 
 Place the icon where you want.
 
-![List screnshot](images/tunnelblick4.png?raw=true "Tunnelblick screenshot" =450x)
+![List screnshot](images/tunnelblick4.png?raw=true "Tunnelblick screenshot")
 
 Select VPN Details...
 
@@ -265,5 +266,5 @@ Select *Do not set nameservers* under Set DNS.
 
 Also recommend to deselect *Check if apparent public IP address changed after connecting.*
 
-![List screnshot](images/tunnelblick6.png?raw=true "Tunnelblick screenshot" =450x)
+![List screnshot](images/tunnelblick6.png?raw=true "Tunnelblick screenshot")
 
