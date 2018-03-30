@@ -268,3 +268,9 @@ Also recommend to deselect *Check if apparent public IP address changed after co
 
 ![List screnshot](images/tunnelblick6.png?raw=true "Tunnelblick screenshot")
 
+
+To change IP
+------------
+
+1) edit /etc/rc.conf
+2) edit /usr/local/openvpn/server.conf
