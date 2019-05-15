@@ -244,7 +244,7 @@ if (strlen($_POST['name']) > 2) {
 
 # If revoke is set, check if file excist and revoke cert and update crl.
 if (is_file('issued/'.$_GET['revoke'])) {
-	exec('openssl ca -config openssl.cnf -key "'.$_SESSION['password'].'" -revoke issued/'.$_GET['revoke'],$return,$exit);
+	exec('openssl ca -config openssl.cnf -key "'.$_SESSION['password'].'" -revoke issued/'.$_GET['revoke'].' 2>&1',$return,$exit);
 	if ($exit != 0) {
 		echo '<div class="form-signin ">';
 		echo '<p class="bg-warning">'._('Revokation failed').', '.implode("<br />\n",$return).'</p>';
