@@ -190,7 +190,24 @@ echo '</form>';
 if (!is_dir('issued/revoked')) mkdir('issued/revoked',0755,true);
 # Creating empty database
 if (!is_file('index.txt')) touch('index.txt');
-
+# Checking for database
+if (!is_file('index.txt')) {
+	echo '<div class="form-signin ">';
+	echo '<p class="bg-warning">'._('The openssl database does not exist').'. '._('Please correct the error').'.</p>';
+	echo '</div>';
+}
+# Checking for write access
+if (!is_writable('index.txt')) {
+	echo '<div class="form-signin ">';
+	echo '<p class="bg-warning">'._('The openssl database could not be written to').'. ('._('write permission denied').').'._('Please correct the error').'.</p>';
+	echo '</div>';
+}
+# Checking for write access
+if (!is_writable('.')) {
+	echo '<div class="form-signin ">';
+	echo '<p class="bg-warning">'._('The current path could not be written to').'. ('._('write permission denied').').'._('Please correct the error').'.</p>';
+	echo '</div>';
+}
 
 # If name is set, and longer than 2 characters, try and create a new cert.
 if (strlen($_POST['name']) > 2) {
