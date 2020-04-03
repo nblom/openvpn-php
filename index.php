@@ -209,6 +209,18 @@ if (!is_writable('.')) {
 	echo '</div>';
 }
 
+# Added auto update of revoked certs.
+if (!is_file('intermediate.crl.pem')) {
+	exec('openssl ca -config openssl.cnf -key "'.$_SESSION['password'].'" -gencrl -out intermediate.crl.pem');
+}
+if (!is_writable('intermediate.crl.pem')) {
+	echo '<div class="form-signin ">';
+	echo '<p class="bg-warning">'._('The certificate revocation list could not be written to').'. ('._('write permission denied').').'._('Please correct the error').'.</p>';
+	echo '</div>';
+}
+
+
+
 # If name is set, and longer than 2 characters, try and create a new cert.
 if (strlen($_POST['name']) > 2) {
 	# Lets remove vierd charcters like spaces.
